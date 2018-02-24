@@ -23,7 +23,7 @@ import time
 from datetime import datetime
 
 from openerp.osv import fields, osv
-from openerp import tools
+from openerp import tools, SUPERUSER_ID
 from openerp.tools.translate import _
 import openerp.addons.decimal_precision as dp
 
@@ -120,7 +120,7 @@ class account_analytic_account(osv.osv):
         if context == None:
             context = {}
         res = {}
-        for elmt in self.browse(cr, uid, ids, context=context):
+        for elmt in self.browse(cr, SUPERUSER_ID, ids, context=context):
             res[elmt.id] = self._get_one_full_name(elmt)
         return res
 
